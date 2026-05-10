@@ -1,15 +1,117 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Paleta */
+  --background: #EDF2FF;
+  --card: #E1F0FF;
+  --card-hover: #D8EAFF;
+  --button: #0529BE;
+  --button-hover: #0421A0;
+  --input: #E1F0FF;
+  --main-text: #000A29;
+  --secondary-text: #ADB5BD;
+  --navbar: #D8EAFF;
+  --success: #06D6A0;
+  --warning: #FFBE0B;
+  --error: #EF476F;
 
+  /* Simulação */
+  --corpo: #0529BE;
+  --forca: #EF476F;
+  --velocidade: #06D6A0;
+  --caminho: #ADB5BD;
+  --destaque: #FFBE0B;
+
+  /* ── Sombras light (derivadas de #EDF2FF e #E1F0FF) ── */
+  --neu-dark:   rgba(180,190,215,0.8);   /* escurece o fundo */
+  --neu-light:  rgba(255,255,255,0.95);  /* clareia o fundo */
+
+  --shadow-card:       6px 6px 14px var(--neu-dark), -3px -3px 8px var(--neu-light);
+  --shadow-card-hover: 10px 10px 22px var(--neu-dark), -4px -4px 10px var(--neu-light);
+  /*--shadow-input:      inset 4px 4px 10px var(--neu-dark), inset -2px -2px 6px var(--neu-light);*/
+  --shadow-input:      4px 4px 10px var(--neu-dark), -2px -2px 6px var(--neu-light);
+  --shadow-btn:        4px 4px 12px var(--neu-dark), -2px -2px 6px var(--neu-light);
+  --shadow-btn-active: inset 2px 2px 8px var(--neu-dark);
+  --shadow-navbar:     6px 6px 14px var(--neu-dark), -3px -3px 8px var(--neu-light);
+}
+.dark {
+  /* ── Paleta dark ── */
+  --background: #000A29;
+  --card: #071B5E;
+  --card-hover: #0A2270;
+  --button: #0529BE;
+  --button-hover: #0635D6;
+  --input: #071B5E;
+  --main-text: #EDF2FF;
+  --secondary-text: #ADB5BD;
+  --navbar: #0A2270;
+  --success: #06D6A0;
+  --warning: #FFBE0B;
+  --error: #EF476F;
+
+  /* Simulação */
+  --corpo: #3A86FF;
+  --forca: #EF476F;
+  --velocidade: #06D6A0;
+  --caminho: #ADB5BD;
+  --destaque: #FFBE0B;
+
+   /* ── Sombras dark (derivadas de #000A29 e #071B5E) ── */
+  --neu-dark:   rgba(0,4,18,0.85);       /* escurece o fundo */
+  --neu-light:  rgba(12,36,110,0.5);     /* clareia o fundo */
+}
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+
+  --color-button: var(--button);
+  --color-button-hover: var(--button-hover);
+
+  --color-input: var(--input);
+
+  --color-main-text: var(--main-text);
+  --color-secondary-text: var(--secondary-text);
+
+  --color-navbar: var(--navbar);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  --color-corpo: var(--corpo);
+  --color-forca: var(--forca);
+  --color-velocidade: var(--velocidade);
+  --color-caminho: var(--caminho);
+  --color-destaque: var(--destaque);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility shadow-card-hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+@utility shadow-input {
+  box-shadow: var(--shadow-input);
+}
+
+@utility shadow-btn {
+  box-shadow: var(--shadow-btn);
+}
+
+@utility shadow-btn-active {
+  box-shadow: var(--shadow-btn-active);
+}
+
+@utility shadow-navbar {
+  box-shadow: var(--shadow-navbar);
 }
 
 @media (prefers-color-scheme: dark) {
