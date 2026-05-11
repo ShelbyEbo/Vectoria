@@ -3,6 +3,7 @@
 :root {
   /* Paleta */
   --background: #EDF2FF;
+  --foreground: #000A29;
   --card: #E1F0FF;
   --card-hover: #D8EAFF;
   --button: #0529BE;
@@ -37,6 +38,7 @@
 .dark {
   /* ── Paleta dark ── */
   --background: #000A29;
+  --foreground: #EDF2FF;
   --card: #071B5E;
   --card-hover: #0A2270;
   --button: #0529BE;
@@ -114,11 +116,48 @@
   box-shadow: var(--shadow-navbar);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@utility bg-background {
+  background-color: var(--background);
+}
+
+@utility bg-card {
+  background-color: var(--card);
+}
+
+@utility bg-card-hover {
+  background-color: var(--card-hover);
+}
+
+@utility bg-button {
+  background-color: var(--button);
+}
+
+@utility bg-button-hover {
+  background-color: var(--button-hover);
+}
+
+@utility bg-input {
+  background-color: var(--input);
+}
+
+@utility bg-navbar {
+  background-color: var(--navbar);
+}
+
+@utility text-main-text {
+  color: var(--main-text);
+}
+
+@utility text-secondary-text {
+  color: var(--secondary-text);
+}
+
+@utility border-main-text {
+  border-color: var(--main-text);
+}
+
+@utility border-secondary-text {
+  border-color: var(--secondary-text);
 }
 
 body {
