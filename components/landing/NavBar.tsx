@@ -6,13 +6,28 @@ import { useEffect, useState } from "react";
 
 export default function NavBar()
 {
-    const [isDark, setDarkTheme] = useState(() => {
-        return localStorage.getItem('theme') === 'dark';
-    });
+    const [isDark, setDarkTheme] = useState(false);
+
+    useEffect(() => {
+        try {
+            const saved = localStorage.getItem('theme');
+            if (saved) {
+                setDarkTheme(saved === 'dark');
+            } else if (window.matchMedia) {
+                setDarkTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+            }
+        } catch (e) {
+            // localStorage may be unavailable in some environments
+        }
+    }, []);
 
     useEffect(() => {
         document.documentElement.classList.toggle('dark', isDark);
-        localStorage.setItem('theme', isDark ? 'light': 'dark');
+        try {
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        } catch (e) {
+            // ignore write errors
+        }
     }, [isDark]);
     return (
         <nav className="fixed top-4 shadow-card left-1/2 -translate-x-1/2 rounded-full p-5 flex items-center gap-10 bg-navbar text-white z-50">
