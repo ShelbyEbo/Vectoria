@@ -1,15 +1,21 @@
 import Link from "next/link";
+import AnoAI from "@/components/ui/animated-shader-background";
 
 export default function Hero()
 {
     return (
-        <div className="bg-card relative p-6 mt-28">
-          <div className="flex flex-col items-center text-center justify-center gap-8">
-            <h1 className="text-2xl font-extrabold text-main-text">Onde o laboratório não chega, a simulação chega</h1>
-            <p>Bem-vindo ao Vectoria</p>
-            <Link href="/app" className="bg-button text-main-text shadow-btn hover:shadow-btn-active rounded-md py-2 px-2">
-              Abrir laboratório
-            </Link>
+        <div className="relative min-h-screen overflow-hidden">
+          <div className="flex flex-col min-h-screen items-center text-center justify-center gap-8">
+            <div className="absolute inset-0 bg-background/30 z-0 pointer-events-none">
+              <AnoAI />
+            </div>
+            <div className="flex flex-col gap-10 z-10 relative justify-center items-center">
+              <h1 className="text-6xl font-extrabold text-main-text">Onde o laboratório não chega, a simulação chega</h1>
+              <p>Bem-vindo ao Vectoria</p>
+              <Link href="/app" className="bg-button text-main-text shadow-btn hover:shadow-btn-active rounded-md py-2 px-8 p-8 w-1/4">
+                Abrir laboratório
+              </Link>
+            </div>
           </div>
         </div>
     );

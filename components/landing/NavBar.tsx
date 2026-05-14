@@ -15,7 +15,7 @@ export default function NavBar()
         localStorage.setItem('theme', isDark ? 'light': 'dark');
     }, [isDark]);
     return (
-        <nav className="fixed top-4 shadow-card left-1/2 -translate-x-1/2 rounded-full p-5 flex items-center gap-10 bg-navbar text-white">
+        <nav className="fixed top-4 shadow-card left-1/2 -translate-x-1/2 rounded-full p-5 flex items-center gap-10 bg-navbar text-white z-50">
             <div className="px-8">
                 <h1>Vectoria logo</h1>
             </div>
