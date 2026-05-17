@@ -5,18 +5,17 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-
-
   --font-display: 'Syne', sans-serif;      /* títulos, navbar, botões */
   --font-body:    'DM Sans', sans-serif;   /* descrições, UI geral */
   --font-mono:    'DM Mono', monospace;    /* valores, equações, labels */
   
   /* Paleta */
-  --card: oklch(1 0 0);
+  --background: #EDF2FF;
+  --card: #E1F0FF;
   --card-hover: #D8EAFF;
   --button: #0529BE;
   --button-hover: #0421A0;
-  --input: oklch(0.922 0 0);
+  --input: #E1F0FF;
   --main-text: #000A29;
   --secondary-text: #ADB5BD;
   --navbar: #D8EAFF;
@@ -75,13 +74,13 @@
 }
 .dark {
   /* ── Paleta dark ── */
-  --background: oklch(0.145 0 0);
+  --background: #000A29;
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: #071B5E;
   --card-hover: #0A2270;
   --button: #0529BE;
   --button-hover: #0635D6;
-  --input: oklch(1 0 0 / 15%);
+  --input: #071B5E;
   --main-text: #EDF2FF;
   --secondary-text: #ADB5BD;
   --navbar: #0A2270;

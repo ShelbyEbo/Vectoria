@@ -36,7 +36,6 @@ export default function NavBar()
             </div>
             <div className="flex gap-4">
                 <a href="#about">Sobre</a>
-                <a href="#motivation">Motivação</a>
                 <a href="#topics">Temas</a>
                 <a href="#experiment">Experimentar</a>
                 <a href="#contribute">Contribua</a>

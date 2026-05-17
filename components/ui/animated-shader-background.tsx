@@ -91,7 +91,7 @@ const AnoAI = () => {
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
-    let frameId;
+    let frameId: any;
     const animate = () => {
       material.uniforms.iTime.value += 0.016;
       renderer.render(scene, camera);
