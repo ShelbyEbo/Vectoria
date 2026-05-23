@@ -1,8 +1,14 @@
-"use client"
+import SideBar from "@/components/app/Sidebar"
+import React from "react"
 
-import React, { useEffect, useState } from "react"
-import { Home, ImagePlay, CircleUser, Settings, FlaskConical } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { usePathname, useRouter } from "next/navigation"
-
+export default function Routering({ children }: { children: React.ReactNode })
+{
+    return (
+        <div className="min-h-screen h-screen flex">
+            <SideBar />
+            <div className="flex-1">
+                {children}
+            </div>
+        </div>
+    );
+}
