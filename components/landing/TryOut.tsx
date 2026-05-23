@@ -1,3 +1,6 @@
+import { Play, Pause, Square, RotateCw } from "lucide-react"
+import { AnimatePresence, motion } from "framer-motion"
+
 export default function TryOut()
 {
     return (
@@ -21,14 +24,14 @@ export default function TryOut()
                         
                         {/* Controles */}
                         <div className="flex gap-4 justify-center">
-                            <button className="bg-button text-main-text px-6 py-2 rounded-lg shadow-btn hover:shadow-btn-active">
-                                Play
+                            <button className="bg-button text-main-text px-2 py-2 rounded-full shadow-btn hover:shadow-btn-active">
+                                <Play className="text-success"/>
                             </button>
-                            <button className="bg-button text-main-text px-6 py-2 rounded-lg shadow-btn hover:shadow-btn-active">
-                                Pausar
+                            <button className="bg-button text-main-text px-2 py-2 rounded-full shadow-btn hover:shadow-btn-active">
+                                <RotateCw className="text-warning"/>
                             </button>
-                            <button className="bg-button text-main-text px-6 py-2 rounded-lg shadow-btn hover:shadow-btn-active">
-                                Reset
+                            <button className="bg-button text-main-text px-2 py-2 rounded-full shadow-btn hover:shadow-btn-active">
+                                <Square className="text-error"/>
                             </button>
                         </div>
                     </div>

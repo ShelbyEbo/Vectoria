@@ -1,8 +1,10 @@
+"use client";
+
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 const CyberneticGridShader = () => {
-  const containerRef = useRef(null);
+  const containerRef = useRef<any>(null);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -108,7 +110,7 @@ const CyberneticGridShader = () => {
     onResize(); // set initial size
 
     // 5) Mouse handler
-    const onMouseMove = (e) => {
+    const onMouseMove = (e: any) => {
       uniforms.iMouse.value.set(
         e.clientX,
         container.clientHeight - e.clientY
@@ -145,12 +147,12 @@ const CyberneticGridShader = () => {
       ref={containerRef}
       className="shader-container"
       style={{
-        position:      'fixed',
+        position:      'absolute',
         top:           0,
         left:          0,
-        width:         '100vw',
-        height:        '100vh',
-        zIndex:        -1,
+        width:         '100%',
+        height:        '100%',
+        zIndex:        0,
         pointerEvents: 'none'
       }}
       aria-label="Cybernetic Grid animated background"

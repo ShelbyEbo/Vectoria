@@ -1,4 +1,5 @@
 import { Bolt, Atom, AudioWaveform, ScanEye, Flame, LucideIcon } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion"
 
 const iconMap: Record<string, LucideIcon> = {
   Bolt, Atom, AudioWaveform, ScanEye, Flame,

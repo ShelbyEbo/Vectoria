@@ -41,7 +41,7 @@ export default function NavBar()
                 <a href="#contribute">Contribua</a>
             </div>
             <div className="flex gap-4">
-                <Link href="/app" className="bg-button shadow-btn hover:shadow-btn-active text-main-text px-4 py-1 text-center rounded-lg items-center inline-flex justify-center">
+                <Link href="/tabs" className="bg-button shadow-btn hover:shadow-btn-active text-main-text px-4 py-1 text-center rounded-lg items-center inline-flex justify-center">
                     Acessar
                 </Link>
                 <button className="bg-button shadow-btn rounded-full text-main-text text-center px-2 py-2 hover:shadow-btn-active" onClick={() => setDarkTheme(prev => !prev)}>
