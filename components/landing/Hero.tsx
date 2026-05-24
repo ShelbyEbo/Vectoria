@@ -12,7 +12,7 @@ export default function Hero()
             </div>
             <div className="flex flex-col gap-10 z-10 relative justify-center items-center">
               <h1 className="text-6xl font-extrabold text-main-text">Onde o laboratório não chega, a simulação chega</h1>
-              <p>Bem-vindo(a) ao Vectoria. Uma plataforma com gravidade</p>
+              <motion.p>Bem-vindo(a) ao Vectoria. Uma plataforma com gravidade</motion.p>
               <Link href="/tabs" className="bg-button text-main-text shadow-btn hover:shadow-btn-active rounded-md py-2 px-8 p-8 w-1/4">
                 Entrar no laboratório
               </Link>

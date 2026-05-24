@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" width="100%" height="100%">
+  <defs>
+    <linearGradient id="vGradFinalLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0529BE" />
+      <stop offset="100%" stop-color="#000A29" />
+    </linearGradient>
+
+    <marker id="inlineArrowDark" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 2 L 8 5 L 0 8 z" fill="#0529BE" />
+    </marker>
+  </defs>
+
+  <g transform="translate(400, 260)">
+    
+    <ellipse cx="0" cy="-20" rx="190" ry="50" fill="none" stroke="#0529BE" stroke-width="2" opacity="0.15" transform="rotate(-15)" />
+    <circle cx="130" cy="-55" r="3.5" fill="#0529BE" opacity="0.4" />
+
+    <ellipse cx="0" cy="-25" rx="175" ry="40" fill="none" stroke="#0529BE" stroke-width="1.5" opacity="0.12" transform="rotate(20)" />
+    
+    <path d="M -120, -180 L -40, -180 L 0, 70 L -60, 70 Z" fill="url(#vGradFinalLight)" />
+    <path d="M 120, -180 L 40, -180 L 0, 70 L 60, 70 Z" fill="#0529BE" />
+    <path d="M 0, 70 L -40, -180 L 0, -80 Z" fill="#000A29" opacity="0.4" />
+    <path d="M 0, 70 L 40, -180 L 0, -80 Z" fill="#3A86FF" opacity="0.3" />
+
+    <path d="M -30, 70 L -95, -180" fill="none" stroke="#0529BE" stroke-width="4" stroke-dasharray="8,6" marker-end="url(#inlineArrowDark)" opacity="0.65" />
+    <path d="M 30, 70 L 95, -180" fill="none" stroke="#0529BE" stroke-width="4" stroke-dasharray="8,6" marker-end="url(#inlineArrowDark)" opacity="0.65" />
+
+    <circle cx="0" cy="70" r="5" fill="#FFFFFF" stroke="#0529BE" stroke-width="2" />
+  </g>
+
+  <text x="400" y="570" 
+        font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+        font-weight="600" 
+        font-size="54" 
+        fill="#000A29" 
+        text-anchor="middle" 
+        letter-spacing="0.15em">VECTORIA</text>
+        
+  <text x="400" y="610" 
+        font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
+        font-weight="500" 
+        font-size="15" 
+        fill="#0529BE" 
+        text-anchor="middle" 
+        letter-spacing="0.45em">PHYSICS SIMULATION</text>
+</svg>

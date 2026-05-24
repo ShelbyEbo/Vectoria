@@ -24,6 +24,7 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   title: "Vectoria",
   description: "Physics simulator",
+  icons: { icon: '/icon.svg' }
 };
 
 export default function RootLayout({

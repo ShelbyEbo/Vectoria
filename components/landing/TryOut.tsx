@@ -12,8 +12,18 @@ export default function TryOut()
                 <div className="p-20">
                     <div className="bg-card relative flex flex-col px-12 py-8 mt-10 rounded-lg shadow-card gap-4">
                         {/* Tela/Monitor */}
-                        <div className="flex flex-col gap-2">
+                        <div className="flex gap-4 justify-between">
                             <h3 className="text-lg font-semibold">Simulador</h3>
+                            <select id="topic" className="px-2 bg-card-hover shadow-input outline-none border border-main-text rounded-sm">
+                                <option value="" disabled>Escolhe um fenômeno</option>
+                                <option value="Eletromagnetismo">Eletromagnetismo</option>
+                                <option value="Mecânica">Mecânica</option>
+                                <option value="Ondas">Ondas</option>
+                                <option value="Óptica">Óptica</option>
+                                <option value="Termodinâmica">Termodinâmica</option>
+                            </select>
+                        </div>
+                        <div className="flex flex-col gap-2">
                             <div className="bg-card-hover border-2 border-main-text rounded-lg p-6 w-full aspect-auto flex items-center justify-center relative overflow-hidden">
                                 {/* Canvas/Simulação vai aqui */}
                                 <div className="text-secondary-text text-center">
