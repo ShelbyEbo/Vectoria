@@ -19,7 +19,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@prisma/client": ["./src/shims/prisma-client"],
+      "@auth/prisma-adapter": ["./src/shims/prisma-adapter"],
+      "next-auth": ["./src/shims/next-auth"],
+      "next-auth/providers/google": ["./src/shims/next-auth-provider-google"],
+      "next-auth/providers/github": ["./src/shims/next-auth-provider-github"]
     }
   },
   "include": [
