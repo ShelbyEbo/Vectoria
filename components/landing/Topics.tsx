@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Bolt, Atom, AudioWaveform, ScanEye, Flame, LucideIcon } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion"
 
 const iconMap: Record<string, LucideIcon> = {
   Bolt, Atom, AudioWaveform, ScanEye, Flame,
@@ -10,12 +9,12 @@ const iconMap: Record<string, LucideIcon> = {
 function Themes({ topics } : { topics: string[] })
 {
     return (
-        <div>
+        <div className="pb-4">
         {
             topics.map((t, index) => (
-                <div key={index} className="flex gap-2 px-8 py-2">
-                    <h1>─</h1>
-                    <h1>{t}</h1>
+                <div key={index} className="flex gap-2 px-6 md:px-8 py-1.5 md:py-2 text-sm md:text-base">
+                    <span aria-hidden>─</span>
+                    <span>{t}</span>
                 </div>
             ))
         }
@@ -32,32 +31,36 @@ export default function Topics()
         color: string;
         subtopics: string[]
     };
+
     const topics: Topic[] = [
         { id: 1, name: "Eletromagnetismo", icon: "Bolt", color: "#BA7517", subtopics: ["Campo Magnético", "Circuito RC", "Campo Elétrico", "Coulomb", "Potencial Elétrico"]}, 
         { id: 2, name: "Mecânica", icon: "Atom", color: "#534AB7", subtopics: ["MRU & MRUV", "Projécteis", "Queda Livre", "Colisões", "Plano Inclinado"] }, 
         { id: 3, name: "Ondas", icon: "AudioWaveform", color: "#0F6E56", subtopics: ["Interferência", "Onda Transversal", "MHS", "Pêndulo"] }, 
         { id: 4, name: "Óptica", icon: "ScanEye", color: "#185FA5", subtopics: ["Espelho", "Lente Delgada", "Refração"] }, 
         { id: 5, name: "Termodinâmica", icon: "Flame", color: "#993C1D", subtopics: ["Gás Ideal", "Expansão", "Condução de Calor"] }
-
     ];
+
     return (
-        <div id="topics" className="min-h-screen relative">
-            <div className="flex flex-col py-16 px-8 gap-6">
+        <section id="topics" className="min-h-screen relative px-4 md:px-20 py-8 md:py-16">
+            <div className="flex flex-col gap-8 md:gap-12 max-w-7xl mx-auto">
                 <div className="flex justify-center">
-                    <h1 className="text-4xl font-bold">Esta plataforma pode simular os tópicos físicos em</h1>
+                    <h1 className="text-2xl md:text-4xl font-bold text-center">
+                      Esta plataforma pode simular os tópicos físicos em
+                    </h1>
                 </div>
-                <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-6 px-48 py-8 auto-rows-fr">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-10">
                     {
                         topics.map((topic) => {
                             const Icon = iconMap[topic.icon];
                             return (
-                                <div key={topic.id} className="bg-card rounded-xl h-full flex flex-col shadow-card gap-3">
-                                    <div className="flex gap-6">
-                                        <div className="bg-card-hover px-8 rounded-tl-lg rounded-br-3xl py-8">
+                                <div key={topic.id} className="bg-card rounded-xl h-full w-full flex flex-col shadow-card gap-6 md:gap-10 p-4 md:p-6">
+                                    <div className="flex gap-4 md:gap-6 items-center">
+                                        <div className="bg-card-hover px-6 md:px-8 rounded-tl-lg rounded-br-3xl py-4 md:py-8 -mt-6 sm:-mt-8 md:-mt-10 -ml-3 sm:-ml-4 md:-ml-6">
                                             <Icon color={topic.color} size={24} />
                                         </div>
-                                        <div className="py-8">
-                                            <h3 className="text-2xl font-black">{topic.name}</h3>
+                                        <div className="py-3 md:py-8 pr-4 -mt-1 sm:-mt-2 md:-mt-4">
+                                            <h3 className="text-xl md:text-2xl font-black">{topic.name}</h3>
                                         </div>
                                     </div>
                                     <Themes topics={topic.subtopics}/>
@@ -67,6 +70,6 @@ export default function Topics()
                     }
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
