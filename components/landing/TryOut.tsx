@@ -20,7 +20,7 @@ export default function TryOut() {
               <select
                 id="topic"
                 defaultValue={""}
-                className="px-3 py-2 w-full md:w-64 bg-card-hover shadow-input outline-none border border-main-text rounded-sm text-sm md:text-base"
+                className="px-3 py-2 w-full md:w-64 bg-card-hover shadow-input outline-none border border-main-text/10 rounded-sm text-sm md:text-base"
               >
                 <option value="" disabled>
                   Escolhe um fenômeno
@@ -35,7 +35,7 @@ export default function TryOut() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <div className="bg-card-hover border-2 border-main-text rounded-lg p-4 md:p-6 w-full h-64 sm:h-76 md:h-100 lg:h-[34rem] flex items-center justify-center relative overflow-hidden">
+            <div className="bg-card-hover border-2 border-main-text/5 rounded-lg p-4 md:p-6 w-full h-64 sm:h-76 md:h-100 lg:h-[34rem] flex items-center justify-center relative overflow-hidden">
               <div className="text-secondary-text text-center px-2 text-sm md:text-base">
                 <p>Simulação carregará aqui</p>
               </div>

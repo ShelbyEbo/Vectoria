@@ -28,7 +28,7 @@
     <circle cx="0" cy="70" r="5" fill="#FFFFFF" stroke="#0529BE" stroke-width="2" />
   </g>
 
-  <text x="400" y="570" 
+  <text x="400" y="400" 
         font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
         font-weight="600" 
         font-size="54" 
@@ -36,7 +36,7 @@
         text-anchor="middle" 
         letter-spacing="0.15em">VECTORIA</text>
         
-  <text x="400" y="610" 
+  <text x="400" y="430" 
         font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" 
         font-weight="500" 
         font-size="15" 

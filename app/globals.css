@@ -13,8 +13,10 @@
   --background: #EDF2FF;
   --card: #E1F0FF;
   --card-hover: #D8EAFF;
-  --button: #0529BE;
+  --button: #4A7FD4;
   --button-hover: #0421A0;
+  --btn-text:    #FFFFFF;
+  --btn-ghost-text: #0529BE;
   --input: #E1F0FF;
   --main-text: #000A29;
   --secondary-text: #ADB5BD;
@@ -80,6 +82,8 @@
   --card-hover: #0A2270;
   --button: #0529BE;
   --button-hover: #0635D6;
+  --btn-text:    #EDF2FF;
+  --btn-ghost-text: #3A86FF;
   --input: #071B5E;
   --main-text: #EDF2FF;
   --secondary-text: #ADB5BD;
@@ -112,6 +116,8 @@
 
   --color-main-text: var(--main-text);
   --color-secondary-text: var(--secondary-text);
+  --color-btn-text: var(--btn-text);
+  --color-btn-ghost-text: var(--btn-ghost-text);
 
   --color-navbar: var(--navbar);
 
@@ -239,6 +245,26 @@
 
 @utility border-secondary-text {
   border-color: var(--secondary-text);
+}
+
+@utility text-btn-text {
+  color: var(--btn-text);
+}
+
+@utility text-btn-ghost-text {
+  color: var(--btn-ghost-text);
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility font-body {
+  font-family: var(--font-body);
+}
+
+@utility font-mono {
+  font-family: var(--font-mono);
 }
 
 @layer base {
