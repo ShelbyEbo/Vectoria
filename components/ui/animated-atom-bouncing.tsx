@@ -4,16 +4,16 @@ import { useEffect, useRef } from "react";
 
 // ─── CONFIGURAÇÃO ──────────────────────────────────────────────
 const CONFIG = {
-  width: 680,
+  width: 700,
   height: 300,
   gridSize: 28,
   gravity: 0.18,
-  speedX: 2.8,
+  speedX: 3.5,
   nucleusRadius: 11,
   orbitRadiusX: 54,
   orbitRadiusY: 19,
   electronRadius: 5.5,
-  bounceHeights: [28, 48, 72, 100, 130, 160, 180, 200],
+  bounceHeights: [38, 48, 72, 100, 130, 160, 180, 200],
 };
 // ───────────────────────────────────────────────────────────────
 
