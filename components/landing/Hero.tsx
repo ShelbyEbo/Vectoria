@@ -5,8 +5,8 @@ import { motion } from "framer-motion"
 export default function Hero()
 {
     return (
-        <section className="relative min-h-screen overflow-hidden">
-          <div className="flex flex-col min-h-screen items-center text-center justify-center gap-8 px-4 md:px-12">
+        <section className="relative overflow-hidden">
+          <div className="flex flex-col h-screen items-center text-center justify-center gap-8 px-4 md:px-12">
             <div className="absolute inset-0 bg-background/30 z-0 pointer-events-none">
               <AnoAI />
             </div>

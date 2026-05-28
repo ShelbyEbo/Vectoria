@@ -1,9 +1,10 @@
 import Image from "next/image";
+import AtomTumbleweed from "@/components/ui/animated-atom-bouncing";
 
 export default function About()
 {
     return (
-        <section id="about" className="min-h-screen relative px-4 md:px-20 py-12 md:py-16">
+        <section id="about" className="relative px-4 md:px-20 py-12 md:py-16">
             <div className="flex justify-center md:justify-start mb-8">
                 <h1 className="text-2xl md:text-4xl font-bold">Sobre o Vectoria</h1>
             </div>
@@ -33,8 +34,11 @@ export default function About()
                         <h6>Uma plataforma de simulações interativas de fenômenos físicos</h6>
                         <h6>para todos explorarem movimento, forças, energia e colisões de forma visual.</h6>
                     </div>
+                    <div className="sm:col-span-2">
+                        <AtomTumbleweed />
+                    </div>
                 </div>
-            </div>
+            </div>            
         </section>
     );
 }
