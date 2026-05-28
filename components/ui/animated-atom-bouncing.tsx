@@ -13,7 +13,7 @@ const CONFIG = {
   orbitRadiusX: 54,
   orbitRadiusY: 19,
   electronRadius: 5.5,
-  bounceHeights: [18, 38, 62, 90, 120, 150, 170, 180],
+  bounceHeights: [28, 48, 72, 100, 130, 160, 180, 200],
 };
 // ───────────────────────────────────────────────────────────────
 
