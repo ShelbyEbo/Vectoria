@@ -1,12 +1,10 @@
 "use client"
-
+import { ExternalLink } from "lucide-react";
 import CyberneticGridShader from "../ui/cybernetic-grid-shader";
-import { useTheme } from "next-themes";
+import { FaDiscord, FaGithub } from "react-icons/fa";
 
 export default function Contribute()
 {
-    const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === "dark";
     return (
         <section id="contribute" className="min-h-screen relative overflow-hidden px-4 md:px-20 py-12 md:py-16">
             <CyberneticGridShader />
@@ -16,6 +14,40 @@ export default function Contribute()
                 <p className="text-sm md:text-lg">
                   Então podes sempre dar o teu contributo para que chegue com melhor qualidade a todos os estudantes!!
                 </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-4 pt-10 max-w-5xl mx-auto">
+                <div className="p-5 rounded-lg border border-main-text/10 backdrop-blur-sm">
+                    <h3 className="font-semibold text-lg">Corrigir erros</h3>
+                    <p className="text-sm opacity-80">
+                        Encontraste um bug ou erro num conteúdo? Ajuda-nos a melhorar.
+                    </p>
+                </div>
+
+                <div className="p-5 rounded-lg border border-main-text/10 backdrop-blur-sm">
+                    <h3 className="font-semibold text-lg">Adicionar conteúdo</h3>
+                    <p className="text-sm opacity-80">
+                        Podes contribuir com exercícios, resumos ou explicações.
+                    </p>
+                </div>
+
+                <div className="p-5 rounded-lg border border-main-text/10 backdrop-blur-sm">
+                    <h3 className="font-semibold text-lg">Partilhar</h3>
+                    <p className="text-sm opacity-80">
+                        Divulga o projecto para mais estudantes.
+                    </p>
+                </div>
+            </div>
+                <a href="https://github.com/ShelbyEbo/Vectoria" target="_blank" className="bg-button px-5 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
+                    <ExternalLink  size={24} className="text-main-text"/>
+                    Dar Feedback
+                </a>
+            <div className="relative flex flex-wrap items-center justify-center gap-4 pt-8">
+                <a href="https://github.com/ShelbyEbo/Vectoria" target="_blank" className="bg-[#6E5494] px-5 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
+                    <FaGithub className="w-5 h-5" />
+                </a>
+                <a href="https://github.com/ShelbyEbo/Vectoria" target="_blank" className="bg-[#5865F2] px-5 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
+                    <FaDiscord className="w-5 h-5" />
+                </a>                
             </div>
             <div className="relative flex flex-col items-center justify-center gap-4 pt-12">
                 <p className="text-sm md:text-base">© 2026 Melzira Ebo</p>

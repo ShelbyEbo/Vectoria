@@ -69,7 +69,7 @@ export default function CyberneticGridShader() {
       const style = getComputedStyle(document.documentElement);
       const gridCss = style.getPropertyValue("--button").trim();
       const energyCss = style.getPropertyValue("--error").trim();
-      const backgroundCss = style.getPropertyValue("--color-background").trim();
+      const backgroundCss = style.getPropertyValue("--background").trim();
 
       return {
         grid: cssColorToVec3(gridCss, "#4A7FD4"),
