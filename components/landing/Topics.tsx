@@ -1,6 +1,6 @@
-import React from "react";
+import { motion } from "framer-motion";
 
-import { Bolt, Atom, AudioWaveform, ScanEye, Flame, LucideIcon } from "lucide-react";
+import { Bolt, Atom, AudioWaveform, ScanEye, Flame, LucideIcon, CircleDot } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
   Bolt, Atom, AudioWaveform, ScanEye, Flame,
@@ -12,10 +12,10 @@ function Themes({ topics } : { topics: string[] })
         <div className="pb-4">
         {
             topics.map((t, index) => (
-                <div key={index} className="flex gap-2 px-6 md:px-8 py-1.5 md:py-2 text-sm md:text-base">
-                    <span aria-hidden>─</span>
+                <motion.div whileHover={{ fontWeight: 'bold', scale: 1.15 }} key={index} className="flex gap-2 px-6 md:px-8 py-1.5 md:py-2 text-sm md:text-base cursor-pointer">
+                    <CircleDot size={8} className="text-main-text mt-2" />
                     <span>{t}</span>
-                </div>
+                </motion.div>
             ))
         }
         </div>
@@ -54,7 +54,7 @@ export default function Topics()
                         topics.map((topic) => {
                             const Icon = iconMap[topic.icon];
                             return (
-                                <div key={topic.id} className="bg-card rounded-xl h-full w-full flex flex-col shadow-card gap-6 md:gap-10 p-4 md:p-6">
+                                <motion.div key={topic.id} initial={{ y: 0 }} whileHover={{ y: -10 }} className="bg-card hover:bg-card-hover rounded-xl h-full w-full flex flex-col shadow-card gap-6 md:gap-10 p-4 md:p-6">
                                     <div className="flex gap-4 md:gap-6 items-center">
                                         <div className="bg-card-hover px-6 md:px-8 rounded-tl-lg rounded-br-3xl py-4 md:py-8 -mt-6 sm:-mt-8 md:-mt-10 -ml-3 sm:-ml-4 md:-ml-6">
                                             <Icon color={topic.color} size={24} />
@@ -64,7 +64,7 @@ export default function Topics()
                                         </div>
                                     </div>
                                     <Themes topics={topic.subtopics}/>
-                                </div>
+                                </motion.div>
                             );
                         })
                     }

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AtomTumbleweed from "@/components/ui/animated-atom-bouncing";
+import { motion } from "framer-motion";
 
 export default function About()
 {
@@ -15,25 +16,25 @@ export default function About()
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                    <div className="flex flex-col border border-2 shadow-card border-card hover:bg-card-hover px-6 md:px-10 py-4 rounded-md">
+                    <motion.div whileHover={{ scale: 1.05, rotateZ: 10 }} className="flex flex-col border border-2 shadow-card border-card hover:bg-card-hover px-6 md:px-10 py-4 rounded-md">
                         <h6>Criado em 2026 por</h6>
                         <h6 className="font-black">Melzira Ebo</h6>
                         <h6>
                           com o objectivo de passar aos jovens estudantes uma experiência totalmente visual com a física experimental
                         </h6>
-                    </div>
+                    </motion.div>
 
-                    <div className="flex flex-col border border-2 shadow-card border-card hover:bg-card-hover px-6 md:px-10 py-4 rounded-md">
+                    <motion.div whileHover={{ scale: 1.05, rotateZ: 10 }} className="flex flex-col border border-2 shadow-card border-card hover:bg-card-hover px-6 md:px-10 py-4 rounded-md">
                         <h6>Muitos estudantes aprendem física apenas no papel.</h6>
                         <h6>
                           Criamos uma plataforma onde é possível visualizar os fenômenos mesmo sem acesso a laboratórios físicos
                         </h6>
-                    </div>
+                    </motion.div>
 
-                    <div className="flex flex-col border border-2 shadow-card border-card hover:bg-card-hover px-6 md:px-10 py-4 rounded-md sm:col-span-2">
+                    <motion.div whileHover={{ scale: 1.05, rotateZ: 10 }} className="flex flex-col border border-2 shadow-card border-card hover:bg-card-hover px-6 md:px-10 py-4 rounded-md sm:col-span-2">
                         <h6>Uma plataforma de simulações interativas de fenômenos físicos</h6>
                         <h6>para todos explorarem movimento, forças, energia e colisões de forma visual.</h6>
-                    </div>
+                    </motion.div>
                     <div className="sm:col-span-2">
                         <AtomTumbleweed />
                     </div>
