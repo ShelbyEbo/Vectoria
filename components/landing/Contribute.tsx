@@ -1,7 +1,12 @@
+"use client"
+
 import CyberneticGridShader from "../ui/cybernetic-grid-shader";
+import { useTheme } from "next-themes";
 
 export default function Contribute()
 {
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === "dark";
     return (
         <section id="contribute" className="min-h-screen relative overflow-hidden px-4 md:px-20 py-12 md:py-16">
             <CyberneticGridShader />
