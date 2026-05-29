@@ -67,12 +67,12 @@ export default function CyberneticGridShader() {
     const readPalette = () => {
       // Lê do container (herda vars do :root/.dark) para pegar o valor atualizado.
       const style = getComputedStyle(container);
-      const gridCss = style.getPropertyValue("--card").trim() || style.getPropertyValue("--color-card").trim();
+      const gridCss = style.getPropertyValue("--button").trim() || style.getPropertyValue("--color-button").trim();
       const energyCss = style.getPropertyValue("--error").trim() || style.getPropertyValue("--color-error").trim();
       const backgroundCss = style.getPropertyValue("--color-background").trim() || style.getPropertyValue("--background").trim();
 
       return {
-        grid: cssColorToVec3(gridCss, "#E1F0FF"),
+        grid: cssColorToVec3(gridCss, "#4A7FD4"),
         energy: cssColorToVec3(energyCss, "#EF476F"),
         background: cssColorToVec3(backgroundCss, "#EDF2FF"),
       };
