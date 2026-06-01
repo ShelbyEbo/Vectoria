@@ -22,8 +22,8 @@ export default function SideBar()
         { name: "Perfil", href: "/profile", icon: "CircleUser" },
     ]; 
     return (
-        <div className="fixed bg-card h-screen rounded-tr-3xl rounded-br-3xl px-4">
-            <div>
+        <div className="fixed flex flex-col bg-card h-screen rounded-tr-3xl rounded-br-3xl px-4">
+            <div className="py-12">
                 {
                     tabs.map(tabb => {
                         const Icon = iconMap[tabb.icon];
@@ -38,14 +38,14 @@ export default function SideBar()
                     })
                 }
             </div>
-            <div>
+            <div className="mt-auto mb-6">
                 <div className="flex">
 
                 </div>
-                <Link href="/" className="flex gap-4 hover:bg-card-hover py-2 px-8 rounded-md">
-                    <LogOut className="text-error" size={20}/>
-                    <h1 className="text-md">Sair</h1>
-                </Link>
+                    <Link href="/" className="flex gap-4 hover:bg-card-hover py-2 px-8 rounded-md">
+                        <LogOut className="text-error" size={20}/>
+                        <h1 className="text-md">Sair</h1>
+                    </Link>
             </div>
         </div>
     )

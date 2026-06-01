@@ -6,9 +6,9 @@ import { FaDiscord, FaGithub } from "react-icons/fa";
 export default function Contribute()
 {
     return (
-        <section id="contribute" className="min-h-screen relative overflow-hidden px-4 md:px-20 py-12 md:py-16">
+        <section id="contribute" className="min-h-screen flex flex-col relative overflow-hidden px-4 md:px-20 py-12 md:py-16">
             <CyberneticGridShader />
-            <div className="relative inset-0 z-10 flex flex-col items-center gap-3 md:gap-4 text-center max-w-3xl mx-auto">
+            <div className="relative inset-0 z-10 flex flex-col items-center gap-3 md:gap-4 text-center max-w-3xl mx-auto mt-20">
                 <h1 className="text-2xl md:text-4xl font-bold">Contribua</h1>
                 <p className="text-base md:text-xl">Este projecto é open source</p>
                 <p className="text-sm md:text-lg">
@@ -37,11 +37,13 @@ export default function Contribute()
                     </p>
                 </div>
             </div>
-                <a href="https://github.com/ShelbyEbo/Vectoria" target="_blank" className="bg-button px-5 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
+            <div className="relative flex items-center justify-center p-2 py-4">
+                <a href="https://github.com/ShelbyEbo/Vectoria" target="_blank" className="bg-button px-8 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
                     <ExternalLink  size={24} className="text-main-text"/>
                     Dar Feedback
                 </a>
-            <div className="relative flex flex-wrap items-center justify-center gap-4 pt-8">
+            </div>
+            <div className="relative flex flex-wrap items-center justify-center gap-4 pt-2">
                 <a href="https://github.com/ShelbyEbo/Vectoria" target="_blank" className="bg-[#6E5494] px-5 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
                     <FaGithub className="w-5 h-5" />
                 </a>
@@ -49,7 +51,7 @@ export default function Contribute()
                     <FaDiscord className="w-5 h-5" />
                 </a>                
             </div>
-            <div className="relative flex flex-col items-center justify-center gap-4 pt-12">
+            <div className="relative flex flex-col mt-auto z-10 items-center justify-center gap-4 pt-8">
                 <p className="text-sm md:text-base">© 2026 Melzira Ebo</p>
             </div>
         </section>
