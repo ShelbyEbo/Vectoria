@@ -70,22 +70,32 @@ model Area {
   order       Int      @default(0)
   published   Boolean  @default(true)
 
+  topics      Topic[]
+}
+
+model Topic {
+  id          String   @id @default(cuid())
+  areaId      String
+  slug        String   @unique
+  name        String
+  order       Int      @default(0)
+
+  area        Area         @relation(fields: [areaId], references: [id])
   simulations Simulation[]
 }
 
 model Simulation {
   id          String   @id @default(cuid())
-  areaId      String
+  topicId     String
   slug        String   @unique
   name        String
   description String
-  topic       String
   parameters  Json
   order       Int      @default(0)
   published   Boolean  @default(true)
 
-  area     Area           @relation(fields: [areaId], references: [id])
-  progress UserProgress[]
+  topic       Topic          @relation(fields: [topicId], references: [id])
+  progress    UserProgress[]
 }
 
 model UserProgress {
