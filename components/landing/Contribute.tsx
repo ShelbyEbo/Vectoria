@@ -38,7 +38,7 @@ export default function Contribute()
                 </div>
             </div>
             <div className="relative flex items-center justify-center p-2 py-4">
-                <a href="https://github.com/ShelbyEbo/Vectoria" target="_blank" className="bg-button px-8 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
+                <a href="https://ig.me/m/shelbot__" target="_blank" className="bg-button px-8 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
                     <ExternalLink  size={24} className="text-main-text"/>
                     Dar Feedback
                 </a>
