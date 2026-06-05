@@ -47,7 +47,7 @@ export default function Contribute()
                 <a href="https://github.com/ShelbyEbo/Vectoria" target="_blank" className="bg-[#6E5494] px-5 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
                     <FaGithub className="w-5 h-5" />
                 </a>
-                <a href="https://github.com/ShelbyEbo/Vectoria" target="_blank" className="bg-[#5865F2] px-5 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
+                <a href="https://discord.gg/h3VYQuVGZC" target="_blank" className="bg-[#5865F2] px-5 py-3 rounded shadow-btn hover:shadow-btn-active mt-10 flex items-center gap-2">
                     <FaDiscord className="w-5 h-5" />
                 </a>                
             </div>
