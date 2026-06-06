@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ─── NextAuth (não alterar os nomes) ───────────────────
+// ─── NextAuth ───────────────────────────────────────────
 
 model User {
   id            String    @id @default(cuid())
@@ -70,21 +70,31 @@ model Area {
   order       Int      @default(0)
   published   Boolean  @default(true)
 
+  topics      Topic[]          // ← relação com Topic
+}
+
+model Topic {
+  id      String @id @default(cuid())
+  areaId  String
+  slug    String @unique
+  name    String
+  order   Int    @default(0)
+
+  area        Area         @relation(fields: [areaId], references: [id])
   simulations Simulation[]
 }
 
 model Simulation {
-  id          String   @id @default(cuid())
-  areaId      String
-  slug        String   @unique
+  id          String  @id @default(cuid())
+  topicId     String
+  slug        String  @unique
   name        String
   description String
-  topic       String
   parameters  Json
-  order       Int      @default(0)
-  published   Boolean  @default(true)
+  order       Int     @default(0)
+  published   Boolean @default(true)
 
-  area     Area           @relation(fields: [areaId], references: [id])
+  topic    Topic          @relation(fields: [topicId], references: [id])
   progress UserProgress[]
 }
 

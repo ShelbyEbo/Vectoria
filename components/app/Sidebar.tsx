@@ -38,9 +38,15 @@ export default function SideBar()
                     })
                 }
             </div>
-            <div className="mt-auto mb-6">
-                <div className="flex">
+            <div className="mt-auto mb-10">
+                <div className="flex gap-4">
+                    <select className="bg-button-hover rounded-md">
+                        <option value="en">English</option>
+                        <option value="pt">Português</option>
+                    </select>
+                    <div className="bg-button-hover shadow-button-hover rounded-xl">
 
+                    </div>
                 </div>
                     <Link href="/" className="flex gap-4 hover:bg-card-hover py-2 px-8 rounded-md">
                         <LogOut className="text-error" size={20}/>

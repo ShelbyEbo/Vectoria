@@ -33,7 +33,7 @@ export default function NavBar()
     }, [isDark]);
 
     return (
-        <motion.nav initial={{ x: -2500 }} animate={{ x: 0 }} transition={{ type:"spring", delay: 0.5 }}  className="fixed top-3 md:top-4 shadow-card left-1/2 -translate-x-1/2 rounded-2xl md:rounded-full px-4 py-3 md:p-5 flex flex-col md:flex-row md:items-center gap-3 md:gap-10 bg-navbar text-white z-50 w-[calc(100%-2rem)] md:w-auto max-w-5xl">
+        <motion.nav initial={{ x: -2500 }} animate={{ x: 0 }} transition={{ type:"spring", delay: 0.5, stiffness: 45 }}  className="fixed top-3 md:top-4 shadow-card left-1/2 -translate-x-1/2 rounded-2xl md:rounded-full px-4 py-3 md:p-5 flex flex-col md:flex-row md:items-center gap-3 md:gap-10 bg-navbar text-white z-50 w-[calc(100%-2rem)] md:w-auto max-w-5xl">
             <div className="px-2 md:px-8 justify-center items-center flex md:text-left">
             </div>
             <div className="flex gap-4 text-sm md:text-base overflow-x-auto whitespace-nowrap justify-start md:justify-center w-full md:w-auto px-1">
