@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react"
-import { Home, ImagePlay, CircleUser, Settings, FlaskConical, LucideIcon, LogOut } from "lucide-react"
+import { Home, ImagePlay, CircleUser, Settings, FlaskConical, LucideIcon, LogOut, Wrench } from "lucide-react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 
@@ -17,6 +17,7 @@ export default function SideBar()
     const tabs: tab[] = [
         { name: "Home", href: "/home", icon: "Home" },
         { name: "Simulações", href: "/simulations", icon: "FlaskConical" },
+        { name: "Prática", href: "/training", icon: "Wrench" },
         { name: "Memes", href: "/memes", icon: "ImagePlay"  },
         { name: "Configurações", href: "/settings", icon: "Settings" },
         { name: "Perfil", href: "/profile", icon: "CircleUser" },
