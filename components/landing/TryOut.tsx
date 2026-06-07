@@ -8,6 +8,8 @@ import { calcular as calcularEspelho }       from '@/src/simulations/optica/opti
 import { calcular as calcularConducao }      from '@/src/simulations/termodinamica/transferencia-de-calor/conducao-calor'
 import { calcular as calcularPlanoInclinado } from '@/src/simulations/mecanica/dinamica/plano-inclinado'
 import { calcular as calcularMruMruv } from '@/src/simulations/mecanica/cinematica/mru-mruv'
+import SimulationRenderer from "../simulations/demo/SimulationRenderer";
+import SimulationControls from "../simulations/demo/SimulationControls";
 
 interface LoadDemoProps 
 {
@@ -53,25 +55,40 @@ function LoadDemo({ simulacao }: LoadDemoProps) {
   }
 }
 
+type SimulationType = | "campo-eletrico" | "circuito-rc" | "mhs" | "espelho" | "conducao-calor" | "plano-inclinado" | "mru-mruv"
+
 export default function TryOut() {
 
   type sims =
   {
     topic: string,
-    subtopics: string[]
+    subtopics: SimulationType[]
   }
-  const [resultado, setResultado] = useState<ReturnType<typeof LoadDemo>>(null)
-
-// quando muda a simulação
-const [isOpen, setIsOpen] = useState(false);
-const [opcaoSelecionada, setOpcaoSelecionada] = useState("Escolhe um fenômeno")
-const [topicSelecionado, setTopicSelecionado] = useState<string | null>(null)
-const [simSelecionada, setSimSelecionada] = useState<LoadDemoProps['simulacao'] | null>(null)
+  const labels = {
+  "mru-mruv": "MRU / MRUV",
+  "plano-inclinado": "Plano Inclinado",
+  "campo-eletrico": "Campo Elétrico",
+  "circuito-rc": "Circuito RC",
+  "mhs": "Movimento Harmónico Simples",
+  "espelho": "Espelho Esférico",
+  "conducao-calor": "Condução de Calor",
+}
+  const [playing, setPlaying] = useState(false)
+  const [elapsedTime, setElapsedTime] = useState(0)
+  // quando muda a simulação
+  const [isOpen, setIsOpen] = useState(false);
+  const [opcaoSelecionada, setOpcaoSelecionada] = useState("Escolhe um fenômeno")
+  const [params, setParams] = useState(PARAMS_DEMO)
+  const [topicSelecionado, setTopicSelecionado] = useState<string | null>(null)
+  const [simSelecionada, setSimSelecionada] = useState<LoadDemoProps['simulacao'] | null>(null)
   useEffect(() => {
-    if (simSelecionada) {
-      setResultado(LoadDemo({ simulacao: simSelecionada }))
-    }
-  }, [simSelecionada])
+    if (!playing)
+      return
+    const interval = setInterval(() => {
+      setElapsedTime(prev => prev + 0.05)
+    }, 50)
+    return () => clearInterval(interval)
+  }, [playing])
   const simulations: sims[] = [
     { topic: "Eletromagnetismo", subtopics: ["campo-eletrico", "circuito-rc"] } ,
     { topic: "Mecânica", subtopics: ["plano-inclinado", "mru-mruv"] },
@@ -118,32 +135,56 @@ const [simSelecionada, setSimSelecionada] = useState<LoadDemoProps['simulacao'] 
                   </motion.ul>
                 )}
               </AnimatePresence>
+              {opcaoSelecionada && (
+                <div className="flex flex-col gap-3 mt-4">
+                  <div className="flex flex-wrap gap-2">
+                    {
+                      simulations.find(sim => sim.topic === opcaoSelecionada)?.subtopics.map(sub => (
+                        <button key={sub} onClick={() => setSimSelecionada(sub)} className={`m-2 px-4 py-2 rounded-md shadow-btn shadow-sm cursor-pointer border border-second-text ${simSelecionada === sub ? "bg-btn-ghost-text text-btn-text" : "bg-button"}`}>{labels[sub]}</button>
+                      ))
+                    }
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex gap-2">
             <div className="bg-card-hover border-2 border-main-text/5 rounded-lg p-4 md:p-6 w-full h-64 sm:h-76 md:h-100 lg:h-[34rem] flex items-center justify-center relative overflow-hidden">
               <div className="text-secondary-text text-center px-2 text-sm md:text-base">
-                <p>Simulação carregará aqui</p>
+                <SimulationRenderer simulation={simSelecionada} params={simSelecionada ? params[simSelecionada] : null} playing={playing} elapsedTime={elapsedTime}/>
               </div>
             </div>
+            {simSelecionada && 
+            <div className="mx-2">
+              <SimulationControls simulation={simSelecionada} params={params[simSelecionada]} onChange={(newParams) => setParams(prev => ({...prev, [simSelecionada]: {...prev[simSelecionada], ...newParams}}))}/>
+            </div>
+            }
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-2">
             <button
-              aria-label="Play"
-              title="Play"
+              aria-label={playing ? "Pause" : "Play"}
+              title={playing ? "Pause" : "Play"}
               className="bg-button text-main-text w-full sm:w-auto px-4 py-4 rounded-full shadow-btn hover:shadow-btn-active flex items-center justify-center"
+              onClick={() => setPlaying(!playing)}
             >
-              <Play className="text-success w-5 h-5" />
-              <span className="sr-only">Play</span>
+              {playing ? (
+                <Pause className="text-success w-5 h-5" />
+              ) : (
+                <Play className="text-success w-5 h-5" />
+              )}
+
+              <span className="sr-only">
+                {playing ? "Pause" : "Play"}
+              </span>
             </button>
 
             <button
               aria-label="Reset"
               title="Reset"
               className="bg-button text-main-text w-full sm:w-auto px-4 py-4 rounded-full shadow-btn hover:shadow-btn-active flex items-center justify-center"
-            >
+              onClick={() => {setElapsedTime(0); setPlaying(true);}}>
               <RotateCw className="text-warning w-5 h-5" />
               <span className="sr-only">Reset</span>
             </button>
@@ -152,7 +193,7 @@ const [simSelecionada, setSimSelecionada] = useState<LoadDemoProps['simulacao'] 
               aria-label="Stop"
               title="Stop"
               className="bg-button text-main-text w-full sm:w-auto px-4 py-4 rounded-full shadow-btn hover:shadow-btn-active flex items-center justify-center"
-            >
+              onClick={() => {setPlaying(false); setElapsedTime(0);}}>
               <Square className="text-error w-5 h-5" />
               <span className="sr-only">Stop</span>
             </button>
