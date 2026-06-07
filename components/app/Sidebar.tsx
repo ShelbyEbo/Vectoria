@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import Link from "next/link"
 
 const iconMap: Record<string, LucideIcon> = {
- Home, ImagePlay, CircleUser, Settings, FlaskConical
+ Home, ImagePlay, CircleUser, Settings, FlaskConical, Wrench
 };
 export default function SideBar()
 {
