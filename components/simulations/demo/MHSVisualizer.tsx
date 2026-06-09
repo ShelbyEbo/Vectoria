@@ -23,6 +23,16 @@ export default function MHSVisualizer({
     const canvas = canvasRef.current
     if (!canvas) return
 
+    const style = getComputedStyle(document.documentElement)
+    const colorCard        = style.getPropertyValue('--color-card').trim()
+    const colorMainText    = style.getPropertyValue('--color-main-text').trim()
+    const colorButton      = style.getPropertyValue('--color-button').trim()
+    const colorAccent      = style.getPropertyValue('--color-accent').trim()
+    const colorSuccess     = style.getPropertyValue('--color-success').trim()
+    const colorError       = style.getPropertyValue('--color-error').trim()
+    const colorWarning     = style.getPropertyValue('--color-warning').trim()
+    const colorSecondary   = style.getPropertyValue('--color-secondary').trim()
+    const colorBackground  = style.getPropertyValue('--color-background').trim()
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
@@ -104,7 +114,7 @@ export default function MHSVisualizer({
 
     const coils = 18
 
-    ctx.strokeStyle = "#222"
+    ctx.strokeStyle = colorSecondary
     ctx.lineWidth = 2
 
     ctx.beginPath()
@@ -210,9 +220,9 @@ export default function MHSVisualizer({
     // Informações
     //----------------------------------
 
-    ctx.fillStyle = "#333"
+    ctx.fillStyle = colorMainText
 
-    ctx.font = "16px Arial"
+    ctx.font = "16px Syne"
 
     ctx.fillText(
       `x = ${x.toFixed(2)} m`,
