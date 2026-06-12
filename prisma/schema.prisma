@@ -20,6 +20,7 @@ model User {
 
   accounts  Account[]
   sessions  Session[]
+  practiceLists PracticeList[]
   progress  UserProgress[]
 }
 
@@ -66,7 +67,7 @@ model Area {
   slug        String   @unique
   name        String
   description String
-  icon        String
+  icon        String?
   order       Int      @default(0)
   published   Boolean  @default(true)
 
@@ -81,6 +82,7 @@ model Topic {
   order       Int      @default(0)
 
   area        Area         @relation(fields: [areaId], references: [id])
+  practiceLists PracticeList[]
   simulations Simulation[]
 }
 
@@ -120,8 +122,8 @@ model PracticeList {
   score       Int?     // pontuação se completou
   createdAt   DateTime @default(now())
 
-  user  User  @relation(...)
-  topic Topic @relation(...)
+  user  User  @relation(fields: [userId],  references: [id], onDelete: Cascade)
+  topic Topic @relation(fields: [topicId], references: [id])
 }
 
 // ─── Enums ──────────────────────────────────────────────
