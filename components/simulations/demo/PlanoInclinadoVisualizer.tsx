@@ -22,6 +22,16 @@ export default function PlanoInclinadoVisualizer({
 
     const canvas = canvasRef.current
     if (!canvas) return
+    const style = getComputedStyle(document.documentElement)
+    const colorCard        = style.getPropertyValue('--color-card').trim()
+    const colorMainText    = style.getPropertyValue('--color-main-text').trim()
+    const colorButton      = style.getPropertyValue('--color-button').trim()
+    const colorAccent      = style.getPropertyValue('--color-accent').trim()
+    const colorSuccess     = style.getPropertyValue('--color-success').trim()
+    const colorError       = style.getPropertyValue('--color-error').trim()
+    const colorWarning     = style.getPropertyValue('--color-warning').trim()
+    const colorSecondary   = style.getPropertyValue('--color-secondary').trim()
+    const colorBackground  = style.getPropertyValue('--color-background').trim()
 
     const ctx = canvas.getContext("2d")
     if (!ctx) return
@@ -45,11 +55,17 @@ export default function PlanoInclinadoVisualizer({
     // plano
     //--------------------------------------------------
 
-    ctx.beginPath()
-    ctx.moveTo(startX, startY)
-    ctx.lineTo(endX, endY)
-    ctx.lineWidth = 6
-    ctx.stroke()
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(endX, startY);
+    ctx.lineTo(endX, endY);
+    ctx.closePath();
+
+    ctx.fillStyle = colorCard;
+    ctx.fill();
+
+    ctx.strokeStyle = colorSecondary;
+    ctx.stroke();
 
     //--------------------------------------------------
     // física
@@ -78,19 +94,26 @@ export default function PlanoInclinadoVisualizer({
     // posição do bloco
     //--------------------------------------------------
 
-    const blockX =
-      startX +
-      Math.cos(angle) * dist
-
-    const blockY =
-      startY -
-      Math.sin(angle) * dist
-
     //--------------------------------------------------
     // bloco
     //--------------------------------------------------
 
     const size = 40
+    const surfaceX =
+      startX +
+      Math.cos(angle) * dist
+
+    const surfaceY =
+      startY -
+      Math.sin(angle) * dist
+
+    const blockX =
+      surfaceX -
+      Math.sin(angle) * (size / 2)
+
+    const blockY =
+      surfaceY -
+      Math.cos(angle) * (size / 2)
 
     ctx.save()
 
@@ -127,6 +150,38 @@ export default function PlanoInclinadoVisualizer({
       blockY + 60
     )
 
+    ctx.strokeStyle = colorWarning
+    ctx.fillStyle = colorWarning
+
+    drawArrow(
+    ctx,
+    blockX,
+    blockY,
+    blockX + Math.cos(angle) * 90,
+    blockY - Math.sin(angle) * 90,
+    );
+
+    ctx.fillText(
+      "Px",
+      blockX + Math.cos(angle) * 90 - 10,
+      blockY - Math.sin(angle) * 90 - 10
+    )
+
+    ctx.strokeStyle = colorButton
+    ctx.fillStyle = colorButton
+    drawArrow(
+    ctx,
+    blockX,
+    blockY,
+    blockX + Math.sin(angle) * 90,
+    blockY + Math.cos(angle) * 90,
+    );
+
+    ctx.fillText(
+      "Py",
+      blockX + Math.cos(angle) * 90 - 30,
+      blockY + Math.sin(angle) * 90 + 30
+    )
     //--------------------------------------------------
     // normal
     //--------------------------------------------------
@@ -181,7 +236,7 @@ export default function PlanoInclinadoVisualizer({
 
     ctx.fillText(
       "Fat",
-      fx - 10,
+      fx - 20,
       fy
     )
 
@@ -191,14 +246,17 @@ export default function PlanoInclinadoVisualizer({
 
     ctx.strokeStyle = "#888"
 
-    ctx.beginPath()
+    ctx.beginPath();
     ctx.arc(
-      startX,
-      startY,
-      40,
-      -angle,
-      0
-    )
+        blockX,
+        blockY,
+        4,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fillStyle = colorMainText;
+    ctx.fill();
     ctx.stroke()
 
     ctx.fillStyle = "#888"
@@ -208,6 +266,23 @@ export default function PlanoInclinadoVisualizer({
       startX + 45,
       startY - 10
     )
+
+    drawArrow(
+    ctx,
+    blockX,
+    blockY,
+    blockX + Math.cos(angle) * a * 20,
+    blockY - Math.sin(angle) * a * 20,
+    );
+    ctx.strokeStyle = colorSuccess;
+
+    ctx.beginPath();
+
+    ctx.moveTo(startX, startY);
+
+    ctx.lineTo(blockX, blockY);
+
+    ctx.stroke();
 
     //--------------------------------------------------
     // informações
