@@ -112,6 +112,18 @@ model UserProgress {
   @@unique([userId, simulationId])
 }
 
+model PracticeList {
+  id          String   @id @default(cuid())
+  userId      String
+  topicId     String
+  exercicios  Json     // array de exercícios gerados
+  score       Int?     // pontuação se completou
+  createdAt   DateTime @default(now())
+
+  user  User  @relation(...)
+  topic Topic @relation(...)
+}
+
 // ─── Enums ──────────────────────────────────────────────
 
 enum Role {
