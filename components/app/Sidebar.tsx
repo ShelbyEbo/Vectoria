@@ -62,7 +62,7 @@ export default function SideBar()
     ]
     return (
         <div className="flex gap-20">
-            <div className={`fixed flex flex-col bg-card h-screen rounded-tr-3xl rounded-br-3xl px-4 ${open ? "w-64 max-w-72": "w-20"}`}>
+            <div className={`flex flex-col bg-card h-screen rounded-tr-3xl rounded-br-3xl px-4 ${open ? "w-64 max-w-72": "w-20"}`}>
                 <div className="py-12">
                     {
                         tabs.map(tabb => {
