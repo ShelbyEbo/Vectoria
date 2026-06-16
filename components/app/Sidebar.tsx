@@ -62,30 +62,40 @@ export default function SideBar()
     ]
     return (
         <div className="flex gap-20">
-            <div className={`flex flex-col bg-card h-screen rounded-tr-3xl rounded-br-3xl px-4 ${open ? "w-64 max-w-72": "w-20"}`}>
-                <div className="py-12">
+            <motion.div
+                animate={{ width: open ? 256 : 80 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="flex flex-col bg-card h-screen rounded-tr-3xl rounded-br-3xl px-4 overflow-hidden"
+            >  
+              <div className="py-12">
                     {
                         tabs.map(tabb => {
                             const Icon = iconMap[tabb.icon];
                             const isActive = pathname === tabb.href;
                             return (
                                 <div key={tabb.name} className="justify-center gap-2">
-                                    <Link href={tabb.href} className={`flex gap-4 py-2 ${isActive ? "bg-btn-ghost-text text-btn-text shadow-button" : "hover:bg-card-hover"} rounded-md px-8`}>
+                                    <Link href={tabb.href} className={`flex items-center gap-4 py-2 rounded-md px-4 ${open ? "justify-start" : "justify-center"} ${isActive ? "bg-btn-ghost-text text-btn-text shadow-button" : "hover:bg-card-hover"}`}>
                                         <Icon size={20}/>
-                                        <h1 className="text-md">{tabb.name}</h1>
+                                        <motion.h1
+                                            animate={{ opacity: open ? 1 : 0, width: open ? "auto" : 0 }}
+                                            transition={{ duration: 0.2 }}
+                                            className="text-md whitespace-nowrap overflow-hidden"
+                                        >
+                                            {tabb.name}
+                                        </motion.h1>                                    
                                     </Link>
                                 </div>
                             );
                         })
                     }
                 </div>
-                <div className="mt-auto mb-12 flex flex-col gap-4">
+                <div className="mt-auto mb-12 flex flex-col gap-4 items-center">                    
                     <div className="flex gap-6">
-                        <button onClick={() => setIsOpen(!isOpen)} className="bg-card-hover items-center shadow-btn px-6 py-2 flex gap-2 rounded-md border border-1 border-second-text cursor-pointer">
-                                <span className={flag}></span>
-                                {opcaoSelecionada}
-                                </button>
-                            <AnimatePresence>
+                    <button onClick={() => setIsOpen(!isOpen)} className="flex items-center justify-center bg-card-hover shadow-btn px-3 py-2 rounded-md">
+                        <span className={flag}></span>
+                        {open && (<span className="ml-2">{opcaoSelecionada}</span>)}
+                    </button>                            
+                    <AnimatePresence>
                                 {isOpen && (
                                 <motion.ul
                                     initial={{ opacity: 0, y: -10, scale: 0.98 }}
@@ -104,19 +114,19 @@ export default function SideBar()
                                     ))}
                                 </motion.ul>
                                 )}
-                            </AnimatePresence>
-                        <div className="flex">
-                            <button className="bg-button shadow-btn rounded-full text-btn-text text-center px-3 py-3 hover:shadow-btn-active" onClick={() => setDarkTheme(prev => !prev)}>
-                                {isDark ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-                            </button>
-                        </div>
+                    </AnimatePresence>
+                    <div className="flex">
+                        <button className="bg-button shadow-btn rounded-full p-3" onClick={() => setDarkTheme(prev => !prev)}>
+                            {isDark ? <Moon /> : <Sun />}
+                        </button>
                     </div>
-                        <Link href="/" className="flex gap-4 hover:bg-card-hover py-2 px-8 rounded-md">
-                            <LogOut className="text-error" size={20}/>
-                            <h1 className="text-md">Sair</h1>
-                        </Link>
                 </div>
-            </div>
+                    <Link href="/" className="flex gap-4 hover:bg-card-hover py-2 px-8 rounded-md">
+                        <LogOut className="text-error" size={20}/>
+                        <h1 className="text-md">Sair</h1>
+                    </Link>
+                </div>
+            </motion.div>
             <motion.button onClick={() => setOpen(!open)} animate={{ y: [0, -10, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut"}} className="fixed top-6 left-66 z-50 flex justify-center bg-card-hover px-2 py-2 rounded-full cursor-pointer shadow-button shadow-2xl">
                 {open === true ? <ArrowLeft size={20}/> : <ArrowRight size={20}/> }
             </motion.button>
