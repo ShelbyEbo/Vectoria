@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { calcular as calcularCampoEletrico } from '@/src/simulations/eletromag/eletrostatica/campo-eletrico'
 import { calcular as calcularCircuitoRC }    from '@/src/simulations/eletromag/eletrodinamica/circuito-rc'
-import { calcular as calcularMHS }           from '@/src/simulations/ondas/oscilacoes/mhs'
+import { calcular as calcularMHS }           from '@/src/simulations/ondulatoria/oscilacoes/mhs'
 import { calcular as calcularEspelho }       from '@/src/simulations/optica/optica-geometrica/espelho'
 import { calcular as calcularConducao }      from '@/src/simulations/termodinamica/transferencia-de-calor/conducao-calor'
 import { calcular as calcularPlanoInclinado } from '@/src/simulations/mecanica/dinamica/plano-inclinado'
