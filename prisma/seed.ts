@@ -165,64 +165,117 @@ async function main()
         }
     })
 
-    // 15. Campo elétrico
-  await prisma.simulation.upsert({
-    where:  { slug: 'eletrostatica/campo-eletrico' },
+    await prisma.simulation.upsert({
+    where:  { slug: 'eletrodinamica/campo-magnetico' },
     update: {},
     create: {
-      slug:        'eletrostatica/campo-eletrico',
-      name:        'Campo Elétrico',
-      description: 'campo-eletrico.desc',
-      topicId:     eletrostatica.id,
+      slug:        'eletrodinamica/campo-magnetico',
+      name: 'Campo Magnético',
+      description: 'Cálculo do campo magnético gerado por corrente elétrica em um fio condutor',  
+      topicId:     eletrodinamica.id,
       order:       1,
       published:   true,
       parameters: {
-        q1: { type: 'number', min: -10e-6, max: 10e-6, default: 2e-6,  unit: 'C' },
-        q2: { type: 'number', min: -10e-6, max: 10e-6, default: -2e-6, unit: 'C' },
-        r:  { type: 'number', min: 0.1,    max: 10,    default: 2,     unit: 'm' },
+        i: { type: 'number', min: 0.01, max: 100, default: 1, unit: 'A' },
+        r: { type: 'number', min: 0.001, max: 10, default: 0.05, unit: 'm' },
+        comprimento: { type: 'number', min: 0.01, max: 10, default: 1, unit: 'm' }
       }
     }
   })
- 
-  // 16. Circuito RC
+
   await prisma.simulation.upsert({
     where:  { slug: 'eletrodinamica/circuito-rc' },
     update: {},
     create: {
       slug:        'eletrodinamica/circuito-rc',
-      name:        'circuito-rc',
-      description: 'circuito-rc.desc',
+      name: 'Circuito RC',
+      description: 'Análise de carga e descarga de um circuito RC simples',
       topicId:     eletrodinamica.id,
+      order:       2,
+      published:   true,
+      parameters: {
+        v0: { type: 'number', min: 1, max: 24, default: 12, unit: 'V' },
+        r:  { type: 'number', min: 10, max: 1e6, default: 1000, unit: 'Ω' },
+        c:  { type: 'number', min: 1e-9, max: 1e-1, default: 1e-3, unit: 'F' },
+        modo: { type: 'select', options: ['carga', 'descarga'], default: 'carga' },
+        duracao: { type: 'number', min: 0.5, max: 120, default: 10, unit: 's' }
+      }    
+    }
+  })
+
+  await prisma.simulation.upsert({
+    where:  { slug: 'eletrostatica/campo-eletrico' },
+    update: {},
+    create: {
+      slug:        'eletrostatica/campo-eletrico',
+      name: 'Campo Elétrico',
+      description: 'Interação elétrica entre cargas pontuais e cálculo do campo elétrico resultante',
+      topicId:     eletrostatica.id,
       order:       1,
       published:   true,
       parameters: {
-        v0:      { type: 'number', min: 1,    max: 24,    default: 12,   unit: 'V'  },
-        r:       { type: 'number', min: 100,  max: 100000,default: 1000, unit: 'Ω'  },
-        c:       { type: 'number', min: 1e-6, max: 1e-2,  default: 1e-3, unit: 'F'  },
-        modo:    { type: 'select', options: ['carga', 'descarga'], default: 'carga'  },
-        duracao: { type: 'number', min: 0.1,  max: 60,    default: 10,   unit: 's'  },
+        q1: { type: 'number', min: -1e-5, max: 1e-5, default: 2e-6, unit: 'C' },
+        q2: { type: 'number', min: -1e-5, max: 1e-5, default: -2e-6, unit: 'C' },
+        r:  { type: 'number', min: 0.05, max: 20, default: 2, unit: 'm' }
       }
     }
   })
 
-    await prisma.simulation.upsert({
-        where: { slug: 'cinematica/mru-mruv' },
-        update: {},
-        create: {
-            slug: 'cinematica/mru-mruv',
-            name: 'MRU e MRUV',
-            description: 'Movimento Rectilíneo Uniforme e Uniformemente Variado',
-            topicId: cinematica.id,
-            order: 1,
-            published: true,
-            parameters: {
-                tipo:    { type: 'select', options: ['MRU', 'MRUV'], default: 'MRUV' },
-                s0:      { type: 'number', min: 0,   max: 500, default: 0,   unit: 'm'    },
-                v0:      { type: 'number', min: -100, max: 100,  default: 20,  unit: 'm/s'  },
-                a:       { type: 'number', min: -50, max: 50,  default: -4,  unit: 'm/s²' },
-                duracao: { type: 'number', min: 1,   max: 60,  default: 5,   unit: 's'    },
-            }
+  await prisma.simulation.upsert({
+    where:  { slug: 'eletrostatica/coulomb' },
+    update: {},
+    create: {
+      slug:        'eletrostatica/coulomb',
+      name: 'Lei de Coulomb',
+      description: 'Força eletrostática entre duas cargas pontuais',
+      topicId:     eletrostatica.id,
+      order:       2,
+      published:   true,
+      parameters: {
+        q1: { type: 'number', min: -1e-5, max: 1e-5, default: 2e-6, unit: 'C' },
+        q2: { type: 'number', min: -1e-5, max: 1e-5, default: -2e-6, unit: 'C' },
+        r:  { type: 'number', min: 0.05, max: 20, default: 2, unit: 'm' }
+      }
+    }
+  })
+
+  await prisma.simulation.upsert({
+    where:  { slug: 'eletrostatica/potencial-eletrico' },
+    update: {},
+    create: {
+      slug:        'eletrostatica/potencial-eletrico',
+      name: 'Potencial Elétrico',
+      description: 'Cálculo do potencial elétrico gerado por cargas pontuais',
+      topicId:     eletrostatica.id,
+      order:       3,
+      published:   true,
+      parameters: {
+        q1: { type: 'number', min: -1e-5, max: 1e-5, default: 2e-6, unit: 'C' },
+        q2: { type: 'number', min: -1e-5, max: 1e-5, default: -2e-6, unit: 'C' },
+        r:  { type: 'number', min: 0.05, max: 20, default: 2, unit: 'm' }
+      }
+    }
+  })
+ 
+
+  await prisma.simulation.upsert({
+    where: { slug: 'cinematica/mru-mruv' },
+    update: {},
+    create: {
+        slug: 'cinematica/mru-mruv',
+        name: 'MRU e MRUV',
+        description: 'Movimento Rectilíneo Uniforme e Uniformemente Variado',
+        topicId: cinematica.id,
+        order: 1,
+        published: true,
+        parameters: {
+            tipo:    { type: 'select', options: ['MRU', 'MRUV'], default: 'MRUV' },
+            s0:      { type: 'number', min: 0,   max: 500, default: 0,   unit: 'm'    },
+            v0:      { type: 'number', min: -100, max: 100,  default: 20,  unit: 'm/s'  },
+            a:       { type: 'number', min: -50, max: 50,  default: -4,  unit: 'm/s²' },
+            duracao: { type: 'number', min: 1,   max: 60,  default: 5,   unit: 's'    },
         }
+    }
     })
 
      // 2. Lançamento de projétil
@@ -231,16 +284,16 @@ async function main()
     update: {},
     create: {
       slug:        'cinematica/projecteis',
-      name:        'Projétil',
-      description: 'Lançamento de projectéis',
+      name: 'Lançamento de Projéteis',
+      description: 'Movimento bidimensional sob ação da gravidade',
       topicId:     cinematica.id,
       order:       2,
       published:   true,
       parameters: {
-        v0:      { type: 'number', min: 1,  max: 200, default: 30, unit: 'm/s' },
-        angulo:  { type: 'number', min: 1,  max: 90,  default: 45, unit: '°'   },
-        g:       { type: 'number', min: 1,  max: 25,  default: 9.8, unit: 'm/s²' },
-        duracao: { type: 'number', min: 1,  max: 30,  default: 6,  unit: 's'   },
+        v0: { type: 'number', min: 1, max: 300, default: 30, unit: 'm/s' },
+        angulo: { type: 'number', min: 1, max: 90, default: 45, unit: '°' },
+        g: { type: 'number', min: 1, max: 25, default: 9.8, unit: 'm/s²' },
+        duracao: { type: 'number', min: 1, max: 60, default: 6, unit: 's' }
       }
     }
   })
@@ -305,6 +358,49 @@ async function main()
       }
     }
   })
+
+  await prisma.simulation.upsert({
+  where: { slug: 'ondas/interferencia' },
+  update: {},
+  create: {
+    slug: 'ondas/interferencia',
+    name: 'Interferência de Ondas',
+    description: 'Superposição de ondas e formação de interferência construtiva e destrutiva',
+
+    topicId: ondas.id,
+    order: 1,
+    published: true,
+    parameters: {
+      amplitude1: { type: 'number', min: 0.01, max: 10, default: 1, unit: 'm' },
+      amplitude2: { type: 'number', min: 0.01, max: 10, default: 1, unit: 'm' },
+      frequencia1: { type: 'number', min: 0.1, max: 1000, default: 5, unit: 'Hz' },
+      frequencia2: { type: 'number', min: 0.1, max: 1000, default: 5, unit: 'Hz' },
+      fase: { type: 'number', min: 0, max: 360, default: 0, unit: '°' },
+      velocidade: { type: 'number', min: 0.1, max: 500, default: 10, unit: 'm/s' },
+      distancia: { type: 'number', min: 0.01, max: 100, default: 5, unit: 'm' },
+      duracao: { type: 'number', min: 1, max: 60, default: 5, unit: 's' }
+    }
+  }
+})
+
+  await prisma.simulation.upsert({
+    where:  { slug: 'ondas/onda-transversal' },
+    update: {},
+    create: {
+      slug:        'ondas/onda-transversal',
+      name: 'Ondas Transversais',
+      description: 'Propagação de ondas mecânicas em meios elásticos',
+      topicId:     ondas.id,
+      order:       2,
+      published:   true,
+      parameters: {
+        amplitude: { type: 'number', min: 0.01, max: 10, default: 1, unit: 'm' },
+        frequencia: { type: 'number', min: 0.1, max: 1000, default: 1, unit: 'Hz' },
+        velocidade: { type: 'number', min: 0.1, max: 500, default: 10, unit: 'm/s' },
+        duracao: { type: 'number', min: 1, max: 60, default: 5, unit: 's' }
+      }
+    }
+  })
  
   // 6. Pêndulo simples
   await prisma.simulation.upsert({
@@ -312,17 +408,17 @@ async function main()
     update: {},
     create: {
       slug:        'oscilacoes/pendulo',
-      name:        'Pêndulo Simples',
-      description: 'Aplicação do MHS no pêndulo',
+      name: 'Pêndulo Simples',
+      description: 'Oscilações harmónicas de um pêndulo ideal',
       topicId:     oscilacoes.id,
       order:       1,
       published:   true,
       parameters: {
-        comprimento: { type: 'number', min: 0.1, max: 10,  default: 1,  unit: 'm'  },
-        amplitude:   { type: 'number', min: 1,   max: 45,  default: 15, unit: '°'  },
-        g:           { type: 'number', min: 1,   max: 25,  default: 9.8, unit: 'm/s²' },
-        duracao:     { type: 'number', min: 1,   max: 30,  default: 10, unit: 's'  },
-      }
+        comprimento: { type: 'number', min: 0.1, max: 50, default: 1, unit: 'm' },
+        amplitude: { type: 'number', min: 1, max: 60, default: 15, unit: '°' },
+        g: { type: 'number', min: 1, max: 25, default: 9.8, unit: 'm/s²' },
+        duracao: { type: 'number', min: 1, max: 120, default: 10, unit: 's' }
+      }    
     }
   })
  
@@ -346,41 +442,21 @@ async function main()
     }
   })
  
-  // 8. Onda transversal
-  await prisma.simulation.upsert({
-    where:  { slug: 'ondas/onda-transversal' },
-    update: {},
-    create: {
-      slug:        'ondas/onda-transversal',
-      name:        'Ondas Transversais',
-      description: 'onda-transversal.desc',
-      topicId:     ondulatoria.id,
-      order:       1,
-      published:   true,
-      parameters: {
-        amplitude:   { type: 'number', min: 0.1, max: 5,   default: 1,  unit: 'm'  },
-        frequencia:  { type: 'number', min: 0.1, max: 100,  default: 1,  unit: 'Hz' },
-        velocidade:  { type: 'number', min: 1,   max: 100, default: 10, unit: 'm/s'},
-        duracao:     { type: 'number', min: 1,   max: 20,  default: 5,  unit: 's'  },
-      }
-    }
-  })
-
   // 12. Refração (Lei de Snell)
   await prisma.simulation.upsert({
     where:  { slug: 'opt_geom/refracao' },
     update: {},
     create: {
       slug:        'opt_geom/refracao',
-      name:        'Refração',
-      description: 'refracao.desc',
+      name: 'Refração da Luz',
+      description: 'Aplicação da lei de Snell para mudança de meio óptico',
       topicId:     optica_geom.id,
       order:       1,
       published:   true,
       parameters: {
-        n1:          { type: 'number', min: 1,  max: 3,  default: 1,   unit: ''  },
-        n2:          { type: 'number', min: 1,  max: 3,  default: 1.5, unit: ''  },
-        anguloEntrada: { type: 'number', min: 0, max: 89, default: 45,  unit: '°' },
+        n1: { type: 'number', min: 1, max: 2.5, default: 1, unit: '' },
+        n2: { type: 'number', min: 1, max: 2.5, default: 1.5, unit: '' },
+        anguloEntrada: { type: 'number', min: 0, max: 89, default: 45, unit: '°' }
       }
     }
   })
@@ -391,16 +467,17 @@ async function main()
     update: {},
     create: {
       slug:        'opt_geom/lente-delgada',
-      name:        'Lente Delgada',
-      description: 'lente-delgada.desc',
+      name: 'Lente Delgada',
+      description: 'Formação de imagem por lentes delgadas convergentes e divergentes',
+
       topicId:     optica_geom.id,
       order:       2,
       published:   true,
       parameters: {
-        tipo:   { type: 'select', options: ['convergente', 'divergente'], default: 'convergente' },
-        f:      { type: 'number', min: 0.1, max: 5,  default: 2, unit: 'm' },
-        ho:     { type: 'number', min: 0.1, max: 5,  default: 1, unit: 'm' },
-        do:     { type: 'number', min: 0.1, max: 20, default: 5, unit: 'm' },
+        tipo: { type: 'select', options: ['convergente', 'divergente'], default: 'convergente' },
+        f:  { type: 'number', min: 0.05, max: 10, default: 2, unit: 'm' },
+        ho: { type: 'number', min: 0.01, max: 10, default: 1, unit: 'm' },
+        do: { type: 'number', min: 0.05, max: 50, default: 5, unit: 'm' }
       }
     }
   })
@@ -411,16 +488,16 @@ async function main()
     update: {},
     create: {
       slug:        'opt_geom/espelho',
-      name:        'Espelhos',
-      description: 'espelho.desc',
+      name: 'Espelhos Esféricos',
+      description: 'Formação de imagens em espelhos côncavos e convexos',
       topicId:     optica_geom.id,
       order:       3,
       published:   true,
       parameters: {
         tipo: { type: 'select', options: ['concavo', 'convexo'], default: 'concavo' },
-        f:    { type: 'number', min: 0.1, max: 5,  default: 2, unit: 'm' },
-        ho:   { type: 'number', min: 0.1, max: 5,  default: 1, unit: 'm' },
-        do:   { type: 'number', min: 0.1, max: 20, default: 5, unit: 'm' },
+        f:  { type: 'number', min: 0.05, max: 10, default: 2, unit: 'm' },
+        ho: { type: 'number', min: 0.01, max: 10, default: 1, unit: 'm' },
+        do: { type: 'number', min: 0.05, max: 50, default: 5, unit: 'm' }
       }
     }
   })
@@ -431,59 +508,57 @@ async function main()
     update: {},
     create: {
       slug:        'gases/gas-ideal',
-      name:        'Gás ideal',
-      description: 'gas-ideal.desc',
+      name: 'Gás Ideal',
+      description: 'Comportamento de gases ideais e equação de estado',
       topicId:     gases.id,
       order:       1,
       published:   true,
       parameters: {
-        n:          { type: 'number', min: 0.1, max: 10,   default: 1,   unit: 'mol' },
-        temperatura:{ type: 'number', min: 1,   max: 1000, default: 300, unit: 'K'   },
-        volume:     { type: 'number', min: 0.1, max: 100,  default: 1,   unit: 'L'   },
-        processo:   { type: 'select', options: ['isocórico', 'isobárico', 'isotérmico', 'adiabático'], default: 'isotérmico' },
+        n: { type: 'number', min: 0.1, max: 100, default: 1, unit: 'mol' },
+        temperatura: { type: 'number', min: 1, max: 2000, default: 300, unit: 'K' },
+        volume: { type: 'number', min: 0.1, max: 1000, default: 1, unit: 'L' },
+        processo: { type: 'select', options: ['isocórico', 'isobárico', 'isotérmico', 'adiabático'], default: 'isotérmico' }
       }
     }
   })
  
-  // 10. Expansão isotérmica
   await prisma.simulation.upsert({
     where:  { slug: 'process/expansao' },
     update: {},
     create: {
       slug:        'process/expansao',
-      name:        'Expansão Isotérmica',
-      description: 'expansao-isotermica.desc',
+      name: 'Expansão Isotérmica',
+      description: 'Processo isotérmico de expansão de gás ideal',
       topicId:     processos.id,
-      order:       2,
+      order:       1,
       published:   true,
       parameters: {
-        n:           { type: 'number', min: 0.1, max: 10,   default: 1,   unit: 'mol' },
-        temperatura: { type: 'number', min: 100, max: 1000, default: 300, unit: 'K'   },
-        vi:          { type: 'number', min: 0.1, max: 50,   default: 1,   unit: 'L'   },
-        vf:          { type: 'number', min: 0.1, max: 100,  default: 5,   unit: 'L'   },
+        n: { type: 'number', min: 0.1, max: 100, default: 1, unit: 'mol' },
+        temperatura: { type: 'number', min: 100, max: 2000, default: 300, unit: 'K' },
+        vi: { type: 'number', min: 0.1, max: 100, default: 1, unit: 'L' },
+        vf: { type: 'number', min: 0.1, max: 500, default: 5, unit: 'L' }
       }
     }
   })
  
-  // 11. Condução de calor
   await prisma.simulation.upsert({
     where:  { slug: 'transfer/conducao-calor' },
     update: {},
     create: {
       slug:        'transfer/conducao',
-      name:        'Condução de Calor',
-      description: 'conducao.desc',
+      name: 'Condução de Calor',
+      description: 'Transferência de calor por condução em materiais sólidos',
       topicId:     transferencia.id,
       order:       1,
       published:   true,
       parameters: {
-        material:   { type: 'select', options: ['cobre', 'aluminio', 'ferro', 'vidro', 'madeira'], default: 'cobre' },
-        t1:         { type: 'number', min: 0,    max: 1000, default: 300, unit: '°C' },
-        t2:         { type: 'number', min: -100, max: 500,  default: 20,  unit: '°C' },
-        espessura:  { type: 'number', min: 0.001,max: 1,    default: 0.1, unit: 'm'  },
-        area:       { type: 'number', min: 0.001,max: 1,    default: 0.01,unit: 'm²' },
-        duracao:    { type: 'number', min: 1,    max: 300,  default: 60,  unit: 's'  },
-      }
+        material: { type: 'select', options: ['cobre', 'alumínio', 'ferro', 'vidro', 'madeira'], default: 'cobre' },
+        t1: { type: 'number', min: -100, max: 1000, default: 300, unit: '°C' },
+        t2: { type: 'number', min: -100, max: 500, default: 20, unit: '°C' },
+        espessura: { type: 'number', min: 0.001, max: 2, default: 0.1, unit: 'm' },
+        area: { type: 'number', min: 0.001, max: 10, default: 0.01, unit: 'm²' },
+        duracao: { type: 'number', min: 1, max: 600, default: 60, unit: 's' }
+      }      
     }
   })
 }
