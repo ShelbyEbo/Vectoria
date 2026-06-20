@@ -13,6 +13,7 @@ export default function CyberneticGridShader() {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    if (typeof window === "undefined" || typeof document === "undefined") return;
 
     const isDarkTheme = () => document.documentElement.classList.contains("dark");
 
@@ -48,7 +49,7 @@ export default function CyberneticGridShader() {
         const tmp = document.createElement("span");
         tmp.style.color = raw;
         document.body.appendChild(tmp);
-        const normalized = getComputedStyle(tmp).color;
+        const normalized = window.getComputedStyle(tmp).color;
         document.body.removeChild(tmp);
 
         const m = normalized.match(/rgba?\(([^)]+)\)/i);
@@ -66,7 +67,7 @@ export default function CyberneticGridShader() {
 
     const readPalette = () => {
       // Lê do container (herda vars do :root/.dark) para pegar o valor atualizado.
-      const style = getComputedStyle(document.documentElement);
+      const style = window.getComputedStyle(document.documentElement);
       const gridCss = style.getPropertyValue("--button").trim();
       const energyCss = style.getPropertyValue("--error").trim();
       const backgroundCss = style.getPropertyValue("--background").trim();
